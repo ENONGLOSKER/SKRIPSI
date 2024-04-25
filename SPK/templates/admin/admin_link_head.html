@@ -1,0 +1,75 @@
+{%load static%}
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="{%static 'css/sb-admin-2.min.css'%}" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet">
+<style>
+    dialog {
+    margin: 50px auto;
+    padding: 1rem 3rem;
+    background: white;
+    max-width: 600px;
+    padding-top: 2rem;
+    border-radius: 20px;
+    border: 0;
+    box-shadow: 0 5px 30px 0 rgb(0 0 0 / 10%);
+    animation: fadeIn 1s ease both;
+    &::backdrop {
+        animation: fadeIn 1s ease both;
+        background: rgb(255 255 255 / 40%);
+        z-index: 2;
+        backdrop-filter: blur(20px);
+    }
+    .x {
+        filter: grayscale(1);
+        border: none;
+        background: none;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        transition: ease filter, transform 0.3s;
+        cursor: pointer;
+        transform-origin: center;
+        &:hover {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+    }
+    h2 {
+        font-weight: 600;
+        font-size: 2rem;
+        padding-bottom: 1rem;
+    }
+    form{
+        /* background-color: red; */
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 300px;
+        margin-bottom: 10px;
+    }
+    form input{
+        height: 35px;
+        padding: 10px 15px;
+    }
+    form textarea{
+        height: 80px;
+        padding: 10px 15px;
+    }
+    form button{
+        margin-top: 20px;
+        height: 40px;
+        padding: 10px;
+        border-radius: 50px;
+        border: none;
+        color: #fff !important;
+        cursor: pointer;
+        background: rgb(var(--vs-primary) / 100%);
+        box-shadow: 0 10px 20px -10px rgb(var(--vs-primary) / 50%);
+    }
+    form #cartProduk{
+        background-color:red ;
+    }
+}
+</style>
+<script src="https://code.highcharts.com/highcharts.js"></script>

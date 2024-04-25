@@ -1,0 +1,557 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicons -->
+    <link href="{%static 'img/logo/logo.png'%}" rel="icon">
+    <title>Sistem Pendukung Keputusan Penentuan Bidang Keterampilan</title>
+
+     <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> -->
+
+    <style>
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to left, #06173B, #000a1f);
+            color: #fff;
+            font-family: "Sora", sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            /* font-family: "Space Mono", monospace; */
+            /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-80%,-60%);
+            text-align: left;
+        }
+        span{
+            background: -webkit-linear-gradient(left, #45E9F1, #0BCF84, #FDF760);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #bidang{
+            background: -webkit-linear-gradient(right,#ffc527,#FF407D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h1 {
+            font-size: 2.7em;
+            font-weight: 900;
+            line-height: 70px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #ddd;
+            width: 640px;
+        }
+        .buttons {
+            padding-top: 15px;
+            /* background-color: red; */
+        }
+        .buttons a{
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 6px;
+        }
+        .btn-get-started{
+            padding: 12px 16px;
+            background-color: #7F27FF;
+            box-shadow: 5px 5px 30px #8f45ff;
+        }
+        .btn-get-started:hover{
+            background-color: #5f09e1;
+        }
+        .btn-sign-in{
+            padding: 12px 24px;
+            background-color: #FF407D;
+            box-shadow: 5px 5px 30px #fe568b;
+        }
+        .btn-sign-in:hover{
+            background-color: #e0044a;
+        }
+        img{
+            width: 260px;
+        }
+
+        .bg1{
+            background-color: #e0044a;
+            filter: blur(100px);
+            -webkit-filter: blur(100px);
+            width: 360px;
+            height: 360px;
+            position: absolute;
+            top: 20%;
+            right: 20%;
+            border-radius: 50%;
+            box-shadow: 5px 5px 100px #e0044a;
+            animation: zoom1 3s infinite ease-in-out;
+        }
+        .bg2{
+            background-color: #5f09e1;
+            filter: blur(100px);
+            -webkit-filter: blur(100px);
+            width: 360px;
+            height: 360px;
+            position: absolute;
+            top: 28%;
+            right: 35%;
+            border-radius: 50%;
+            box-shadow: 5px 5px 100px #5f09e1;
+            animation: zoom2 3s infinite ease-in-out;
+
+        }
+        @keyframes zoom1 {
+            0%, 100% {
+                transform: scale(1) translate(-20%, 0%);
+            }
+            50% {
+                transform: scale(1.1) translate(0, 10%);
+            }
+        }
+
+        @keyframes zoom2 {
+            0%, 100% {
+                transform: scale(1) translate(0%, 20%);
+            }
+            50% {
+                transform: scale(1.1) translate(20%, 0);
+            }
+        }
+
+        .nav-div{
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            transform: translate(-5%,150%);
+            /* margin: 50px 80px 0 80px; */
+        }
+
+        ul{
+            list-style: none; 
+            display: flex; 
+            gap: 20px; 
+            margin: 0; 
+            padding: 0;
+        }
+        ul li a{
+            text-decoration: none; 
+            color: #fff;
+        }
+        ul li a:hover{
+            background-color: transparent;
+            border-bottom: 2px solid #5f09e1;
+            padding-bottom: 4px;
+            text-shadow:#e0044a 5px 5px 20px ;
+            color: #ff276b;
+        }
+        ul li:nth-child(5)>a{
+            color: white;
+            background-image:linear-gradient(to right,#7F27FF,#ff276b);
+            box-shadow: 3px 3px 30px #7F27FF;
+            padding: 8px 18px;
+            border-radius: 4px;
+            border: none;
+        }
+        ul li:nth-child(5)>a:hover{
+            color: white;
+            background-image:linear-gradient(to right,#ff276b,#7F27FF);
+            box-shadow: 3px 3px 30px #ff276b;
+        }
+    </style>
+</head>
+<body>
+<!-- navbar -->
+<nav>
+    <div class="nav-div">
+        <div class="logo">
+            <!-- <img src="{% static 'img/logo.png' %}" alt="Logo UKM ITC" style="width: 40px;"> -->
+        </div>
+        <div class="navbar" style="display: flex;">
+            <ul>
+                <li><a href="{% url 'index' %}" id="nav1" data-value="Home">Home</a></li>
+                <li><a href="/about" id="nav2" data-value="About">About</a></li>
+                <li><a href="{% url 'detail' %}" id="nav3" data-value="Rekomendasi">Rekomendasi</a></li>
+                <li><a href="{% url 'signin' %}" id="nav4" data-value="Sign In">Sign In</a></li>
+                <li><a href="{% url 'signup' %}" id="nav5" data-value="Sign Up">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div id="particles-js" style="height: 100vh;"></div>
+
+<div class="bg1"></div>
+<div class="bg2"></div>
+
+<!-- konten -->
+<div class="content">
+    <img src="{% static 'img/logo_ukmitc.png' %}" alt="">
+    <h1>Sistem Pendukung Keputusan <span>Penentuan Bidang Keterampilan</span> Pada <span id="itc" data-value="UKM ITC">UKM ITC</span> <span id="bidang" data-value="Programming">Programming</span> </h1>
+    <p>Ambil keputusan dalam memilih bidang keterampilan dengan lebih informatif sesuai bakat dan minatmu!</p>
+    <div class="buttons">
+        <a href="{% url 'signin'%}" class="btn-get-started">Get Started</a>
+        <a href="{% url 'signin' %}" class="btn-sign-in">Sign In</a>
+    </div>
+</div>
+
+<audio src="{% static 'audio/sound1.mp3' %}" autoplay></audio>
+<audio src="{% static 'audio/sound2.mp3' %}" id="sounc_click"></audio>
+
+
+<!-- sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- script js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 150,
+                "density": {
+                    "enable": true,
+                    "value_area": 600
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 5,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+</script>
+
+<script>
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let interval = null;
+    // tex hover
+    document.querySelector("#bidang").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 20);
+    };
+    document.querySelector("#itc").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 20);
+    };
+    
+    document.querySelector("#nav1").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 20);
+    };
+    document.querySelector("#nav2").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 20);
+    };
+    document.querySelector("#nav3").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 20);
+    };
+    document.querySelector("#nav4").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 20);
+    };
+
+    // text hover sound
+    document.querySelector("#itc").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#bidang").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    
+    document.querySelector("#nav1").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#nav2").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#nav3").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#nav4").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+
+    
+</script>
+
+<!-- audio play -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mendapatkan elemen audio
+        var audio = document.querySelector('audio');
+
+        // Memainkan audio ketika ada interaksi pengguna
+        document.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+
+        // Mengulang pemutaran audio
+        audio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+    });
+</script>
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mendapatkan elemen audio click
+        var clickSound = document.getElementById('sounc_click');
+
+        // Memainkan audio click ketika ada interaksi pengguna
+        document.addEventListener('click', function() {
+            clickSound.play();
+        });
+    });
+</script> -->
+
+
+</body>
+</html>
+
+

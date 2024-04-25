@@ -1,0 +1,743 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to left, #06173B, #000a1f);
+            color: #fff;
+            font-family: "Sora", sans-serif;
+        }
+        .signup-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            padding: 20px;
+        }
+        .signup-form h2 {
+            color: #fff;
+        }
+        .signup-form .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .signup-form .form-control {
+            background: transparent;
+            color: #c0c0c0;
+            border-color: #aeaeae8e;
+        }
+        .signup-form .form-control:focus {
+            border-color: #7128e5;
+            box-shadow: 1px 1px 10px #7128e5 ;
+        }
+        .signup-form .btn {
+            background: #7128e5;
+            border: none;
+        }
+        .signup-form .btn:hover {
+            background: #e0044a;
+        }
+        section{
+            padding: 22px 18px;
+            backdrop-filter: blur(12px) saturate(147%);
+            -webkit-backdrop-filter: blur(12px) saturate(147%);
+            background-color: rgba(17, 25, 40, 0.44);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.125);
+        }
+        section span{
+            color: #ffffffb1;
+            font-size: 13px;
+        }
+        section span:hover{
+            color: #ffffff;
+        }
+        section span a:hover{
+            color: #e0044a;
+        }
+        section img{
+            padding-bottom: 30px;
+        }
+        .bagian{
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            padding-bottom: 20px;
+        }
+        .bagian1{
+            width: 100%;
+            backdrop-filter: blur(14px) saturate(147%);
+            -webkit-backdrop-filter: blur(14px) saturate(147%);
+            background-color: rgba(17, 25, 40, 0.44);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            padding: 24px;
+        }
+        .bagian2{
+            box-shadow: 1px 1px 20px #9e5eff;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .bagian2 a{
+           padding: 8px 24px;
+           color: white;
+           border-radius: 6px;
+           background-color: #5f09e1;
+           text-decoration: none;
+        }
+        .bagian2 a:hover{
+            background-image:linear-gradient(to left,#7F27FF,#ff276b);
+            box-shadow: 3px 3px 30px #e0044a;
+            animation: moveBackground 2s infinite;
+            transition: 5s ease-in-out; 
+        }
+        @keyframes moveBackground {
+            0% {
+                background-image:linear-gradient(40deg,#7F27FF,#ff276b);
+            }
+            20% {
+                background-image:linear-gradient(45deg,#7F27FF,#ff276b);
+            }
+            40% {
+                background-image:linear-gradient(48deg,#7F27FF,#ff276b);
+            }
+            60% {
+                background-image:linear-gradient(50deg,#7F27FF,#ff276b);
+            }
+            80% {
+                background-image:linear-gradient(60deg,#7F27FF,#ff276b);
+            }
+            100% {
+                background-image:linear-gradient(70deg,#7F27FF,#ff276b);
+            }
+        }
+        .bagian2 h3{
+           font-weight: 600;
+           margin-top: -8px;
+           margin-bottom: 20px;
+        }
+
+        .bg1{
+            background-color: #7128e5;
+            filter: blur(100px);
+            -webkit-filter: blur(100px);
+            width: 330px;
+            height: 330px;
+            position: absolute;
+            top: 20%;
+            right: 50%;
+            border-radius: 50%;
+            box-shadow: 5px 5px 100px #e0044a;
+            animation: zoom1 6s infinite ease-in-out;
+        }
+        .bg2{
+            background-color: #e0044a;
+            filter: blur(100px);
+            -webkit-filter: blur(100px);
+            width: 330px;
+            height: 330px;
+            position: absolute;
+            top: 38%;
+            right: 30%;
+            border-radius: 50%;
+            box-shadow: 5px 5px 100px #5f09e1;
+            animation: zoom2 6s infinite ease-in-out;
+        }
+        @keyframes zoom1 {
+            0%, 100% {
+                transform: scale(1) translate(-10%, -40%);
+            }
+            50% {
+                transform: scale(1.1) translate(10%, 60%);
+            }
+        }
+
+        @keyframes zoom2 {
+            0%, 100% {
+                transform: scale(1) translate(-10%, 40%);
+            }
+            50% {
+                transform: scale(1.1) translate(20%, -60%);
+            }
+        }
+
+        .keterangan{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 30px;
+        }
+        .keterangan .ket1 h4{
+            font-weight: 600;
+            color: #e0044a;
+        }
+        .keterangan .ket1 p{
+            font-weight: 600;
+            color: #ff74a0;
+        }
+        .keterangan .ket2 img{
+            width: 200px;
+        }
+        td{
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<div class="bg1"></div>
+<div class="bg2"></div>
+
+<div class="signup-form">
+    <section>
+        <div class="keterangan">
+            <div class="ket1">
+                <h4 id="Hasil1" data-value="Hasil Rekomendasi SPK">Hasil Rekomendasi SPK</h4>
+                <p id="Hasil2" data-value="Pemilihan Bidang Keterampilan">Pemilihan Bidang Keterampilan</p>
+            </div>
+            <div class="ket2">
+                <img src="{% static '/img/icon.png' %}" alt="logo_ukmitc">
+            </div>
+        </div>
+        
+        <div class="bagian">
+            <div class="bagian1">
+                <table>
+                    <tr>
+                        <td>Nama</td>
+                        <td id="ket1" data-value=": {{ user.formatted_username }}">: {{ user.formatted_username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Jenis Kelamin</td>
+                        <td id="ket2" data-value=": {{ user.jk }}">: {{ user.jk }}</td>
+                    </tr>
+                    <tr>
+                        <td>NIM</td>
+                        <td id="ket3" data-value=": {{ user.nim }}">: {{ user.nim }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prodi</td>
+                        <td id="ket4" data-value=": {{ user.prodi }}">: {{ user.prodi }}</td>
+                    </tr>
+                    <tr>
+                        <td>Semester</td>
+                        <td id="ket5" data-value=": {{ user.semester }}">: {{ user.semester }}</td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td id="ket6" data-value=": {{ user.alamat }}">: {{ user.alamat }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td id="ket7" data-value=": {{ user.email }}">: {{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nomor Hp</td>
+                        <td id="ket8" data-value=": {{ user.nomor_hp }}">: {{ user.nomor_hp }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Nilai</td>
+                        {% if nilai.hasil %}
+                        <td id="ket8" data-value=": {{ nilai.hasil }}">: 
+                            <p style=" background-color: #e0044a; display: inline; padding: 2px 6px; border-radius: 2px;">{{ nilai.hasil }}</p>
+                        </td>
+                        {% else %}
+                        <td id="ket8" data-value=": Belum Tes">: 
+                            <p style=" background-color: #e0044a; display: inline; padding: 2px 6px; border-radius: 2px;">Belum   Tes</p>
+                        </td>
+                        {% endif %}
+                    </tr>
+                </table>
+            </div>
+            <div class="bagian2">
+                
+                {% if nilai.hasil %}
+                    <p>Rekomendasi Bidang</p>
+                    {% if nilai.hasil > 4.00 %}
+                    <h3 style="position: relative;">Programming</h3>
+                    {% elif nilai.hasil < 4.00 and nilai.hasil > 3.50 %}
+                    <h3 style="position: relative;">Jaringan</h3>
+                    {% elif nilai.hasil < 3.50 and nilai.hasil > 3.00 %}
+                    <h3 style="position: relative;">IOT</h3>
+                    {% else %}
+                    <h3 style="position: relative;">Multimedia</h3>
+                    {% endif %}
+                {% else %}
+                    <p>Jadwal Tes</p>
+                    {%for data in jadwal %}
+                    <h3 style="position: relative;">{{ data.tanggal }} / <span style="background-color: #e0044a;color: #fff; padding: 4px; border-radius: 2px;">{{ data.waktu }}</span></h3>
+                    
+                    <a href="{{ data.link_tes }}" target="_blank">Mulai Tes</a>
+                    {%endfor%}
+                {% endif %}
+            </div>
+        </div>
+        <span> Kembali ke halaman<a href="{% url 'index' %}">Home</a> atau <a href="{% url 'signout' %}" onclick="return confirm('Apakah Anda yakin ingin keluar?')">Keluar</a></span>
+    </section>
+</div>
+
+<audio src="{% static 'audio/sound1.mp3' %}" autoplay></audio>
+<audio src="{% static 'audio/sound2.mp3' %}" id="sounc_click"></audio>
+
+<!-- sweet alert -->
+{%for message in messages%}
+{% if message.tags == 'success' %}                     
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>                                            
+<script>
+    var m="{{message}}";
+    swal("Sign in",m,"success");
+</script>
+{% endif %}
+{%endfor%}
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 120,
+                "density": {
+                    "enable": true,
+                    "value_area": 600
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 5,
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+</script>
+
+<script>
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let interval = null;
+
+    document.querySelector("#ket1").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#ket2").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#ket3").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#ket4").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#ket5").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#ket6").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#ket7").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#ket8").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#Hasil1").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+    document.querySelector("#Hasil2").onmouseover = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if (index < iteration) {
+            return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+        if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+    }, 10);
+    };
+
+    document.querySelector("#ket1").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#ket2").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#ket3").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#ket4").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#ket5").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#ket6").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#ket7").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#ket8").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#Hasil1").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+    document.querySelector("#Hasil2").addEventListener('mouseover', function() {
+        // Memainkan audio ketika teks dihover
+        const audio = document.getElementById('sounc_click');
+        audio.play();
+    });
+
+
+</script>
+
+<!-- audio play -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mendapatkan elemen audio
+        var audio = document.querySelector('audio');
+
+        // Memainkan audio ketika ada interaksi pengguna
+        document.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+
+        // Mengulang pemutaran audio
+        audio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+    });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,315 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{%static 'img/logo/logo.png'%}" rel="icon">
+    <title>Sign Up | SPK ITC</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to left, #06173B, #000a1f);
+            color: #fff;
+            font-family: "Sora", sans-serif;
+        }
+        .signup-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            padding: 20px;
+        }
+        .signup-form h2 {
+            color: #fff;
+        }
+        .signup-form .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .signup-form .form-control {
+            background: transparent;
+            color: #c0c0c0;
+            border-color: #aeaeae8e;
+            text-transform: capitalize;
+        }
+        .signup-form .form-control:focus {
+            border-color: #7128e5;
+            box-shadow: 1px 1px 10px #7128e5 ;
+        }
+        .signup-form .btn {
+            background: #7128e5;
+            border: none;
+        }
+        .signup-form .btn:hover {
+            background: #e0044a;
+        }
+        form{
+            padding: 22px 18px;
+            backdrop-filter: blur(12px) saturate(147%);
+            -webkit-backdrop-filter: blur(12px) saturate(147%);
+            background-color: rgba(17, 25, 40, 0.44);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            text-align: center;
+        }
+        form img{
+            padding-bottom: 30px;
+        }
+        .bagian{
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .bagian1{
+            width: 100%;
+        }
+        .bagian2{
+            width: 100%;
+        }
+
+        .bg1{
+            background-color: #7128e5;
+            filter: blur(100px);
+            -webkit-filter: blur(100px);
+            width: 330px;
+            height: 330px;
+            position: absolute;
+            top: 20%;
+            right: 50%;
+            border-radius: 50%;
+            box-shadow: 5px 5px 100px #e0044a;
+            animation: zoom1 6s infinite ease-in-out;
+        }
+        .bg2{
+            background-color: #e0044a;
+            filter: blur(100px);
+            -webkit-filter: blur(100px);
+            width: 330px;
+            height: 330px;
+            position: absolute;
+            top: 38%;
+            right: 30%;
+            border-radius: 50%;
+            box-shadow: 5px 5px 100px #5f09e1;
+            animation: zoom2 6s infinite ease-in-out;
+        }
+        @keyframes zoom1 {
+            0%, 100% {
+                transform: scale(1) translate(-10%, -40%);
+            }
+            50% {
+                transform: scale(1.1) translate(10%, 60%);
+            }
+        }
+
+        @keyframes zoom2 {
+            0%, 100% {
+                transform: scale(1) translate(-10%, 40%);
+            }
+            50% {
+                transform: scale(1.1) translate(20%, -60%);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="particles-js"></div>
+<div class="bg1"></div>
+<div class="bg2"></div>
+<div class="signup-form">
+    <form method="post" >
+        {% csrf_token %}
+        <img src="{% static '/img/icon.png' %}" alt="logo itc" style="width: 200px;">
+        <div class="bagian">
+            <div class="bagian1">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="nim" placeholder="NIM" required="required">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="prodi" required="required">
+                        <option value="Teknik Informatika">Teknik Informatika</option>
+                        <option value="Sistem Informasi">Sistem Informasi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="semester" placeholder="Semester" required="required">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="alamat" placeholder="Alamat" required="required" style="height: 136px; text-transform: capitalize;"></textarea>
+                </div>
+            </div>
+    
+            <div class="bagian2">
+                <div class="form-group">
+                    <select class="form-control" name="jk" required="required">
+                        <option value="Laki-Laki">Laki-Laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="nomor_hp" placeholder="Nomor Hp" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password1" placeholder="Password" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required="required">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </div>
+                <span>Sudah punya akun? <a href="{% url 'signin' %}">Sign In</a> atau ke <a href="{% url 'index' %}">Home</a></span>
+            </div>
+        </div>
+  
+    </form>
+</div>
+
+<audio src="{% static 'audio/sound1.mp3' %}" autoplay></audio>
+
+<!-- script -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 110,
+                "density": {
+                    "enable": true,
+                    "value_area": 600
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 5,
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+</script>
+<!-- audio play -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mendapatkan elemen audio
+        var audio = document.querySelector('audio');
+
+        // Memainkan audio ketika ada interaksi pengguna
+        document.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+
+        // Mengulang pemutaran audio
+        audio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+    });
+</script>
+
+</body>
+</html>
+
