@@ -53,7 +53,7 @@ def dashboard_admin(request):
         'jumlah_bobot': jumlah_bobot,
         'persentase_penilaian': persentase_penilaian,
         'penilaianhasil_list': penilaianhasil_list,
-        'alternatif_list': Alternatif.objects.all()  # tambahkan ini untuk nama alternatif di x-axis
+        'alternatif_list': Alternatif.objects.all() 
     }
 
     return render(request, 'dashboard.html', context)

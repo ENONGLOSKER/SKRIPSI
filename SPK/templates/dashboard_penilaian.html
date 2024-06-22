@@ -91,7 +91,7 @@
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user}}</span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="text-transform: capitalize;">{{user}}</span>
                     <img class="img-profile rounded-circle"
                         src="{%static 'img/logo/logo.png'%}">
                 </a>
@@ -175,7 +175,7 @@
                                         </tr> 
                                         {%endfor%}   
                                         <tr class="font-weight-bold">
-                                            <td style="background-color: rgb(29, 140, 218); color: #ffffff;" class="text-center" colspan="2"> GAP</td>  
+                                            <td style="background-color: rgb(29, 140, 218); color: #ffffff;" class="text-center" colspan="2"> NILAI STANDAR</td>  
                                             {% for kriteria in gap_kriteria %}
                                             <td style="background-color: rgb(189, 226, 255);" class="text-center">{{ kriteria.gap }}</td>
                                             {% endfor %}  
