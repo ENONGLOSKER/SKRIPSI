@@ -5,121 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{%static 'img/logo/logo.png'%}" rel="icon">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <title>Sign Up | SPK ITC</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: linear-gradient(to left, #06173B, #000a1f);
-            color: #fff;
-            font-family: "Sora", sans-serif;
-        }
-        .signup-form {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            padding: 20px;
-        }
-        .signup-form h2 {
-            color: #fff;
-        }
-        .signup-form .form-group {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-        .signup-form .form-control {
-            background: transparent;
-            color: #c0c0c0;
-            border-color: #aeaeae8e;
-            text-transform: capitalize;
-        }
-        .signup-form .form-control:focus {
-            border-color: #7128e5;
-            box-shadow: 1px 1px 10px #7128e5 ;
-        }
-        .signup-form .btn {
-            background: #7128e5;
-            border: none;
-        }
-        .signup-form .btn:hover {
-            background: #e0044a;
-        }
-        form{
-            padding: 22px 18px;
-            backdrop-filter: blur(12px) saturate(147%);
-            -webkit-backdrop-filter: blur(12px) saturate(147%);
-            background-color: rgba(17, 25, 40, 0.44);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            text-align: center;
-        }
-        form img{
-            padding-bottom: 30px;
-        }
-        .bagian{
-            display: flex;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        .bagian1{
-            width: 100%;
-        }
-        .bagian2{
-            width: 100%;
-        }
-
-        .bg1{
-            background-color: #7128e5;
-            filter: blur(100px);
-            -webkit-filter: blur(100px);
-            width: 330px;
-            height: 330px;
-            position: absolute;
-            top: 20%;
-            right: 50%;
-            border-radius: 50%;
-            box-shadow: 5px 5px 100px #e0044a;
-            animation: zoom1 6s infinite ease-in-out;
-        }
-        .bg2{
-            background-color: #e0044a;
-            filter: blur(100px);
-            -webkit-filter: blur(100px);
-            width: 330px;
-            height: 330px;
-            position: absolute;
-            top: 38%;
-            right: 30%;
-            border-radius: 50%;
-            box-shadow: 5px 5px 100px #5f09e1;
-            animation: zoom2 6s infinite ease-in-out;
-        }
-        @keyframes zoom1 {
-            0%, 100% {
-                transform: scale(1) translate(-10%, -40%);
-            }
-            50% {
-                transform: scale(1.1) translate(10%, 60%);
-            }
-        }
-
-        @keyframes zoom2 {
-            0%, 100% {
-                transform: scale(1) translate(-10%, 40%);
-            }
-            50% {
-                transform: scale(1.1) translate(20%, -60%);
-            }
-        }
-
-    </style>
 </head>
 <body>
 <div id="particles-js"></div>
@@ -132,43 +24,43 @@
         <div class="bagian">
             <div class="bagian1">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required" style="background-color: transparent;">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" name="nim" placeholder="NIM" required="required">
+                    <input type="number" class="form-control" name="nim" placeholder="NIM" required="required" style="background-color: transparent;">
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="prodi" required="required">
+                    <select class="form-control" name="prodi" required="required" style="background-color: transparent;">
                         <option value="Teknik Informatika">Teknik Informatika</option>
                         <option value="Sistem Informasi">Sistem Informasi</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" name="semester" placeholder="Semester" required="required">
+                    <input type="number" class="form-control" name="semester" placeholder="Semester" required="required" style="background-color: transparent;">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="alamat" placeholder="Alamat" required="required" style="height: 136px; text-transform: capitalize;"></textarea>
+                    <textarea class="form-control" name="alamat" placeholder="Alamat" required="required" style="height: 136px; text-transform: capitalize; background-color: transparent;"></textarea>
                 </div>
             </div>
     
             <div class="bagian2">
                 <div class="form-group">
-                    <select class="form-control" name="jk" required="required">
-                        <option value="Laki-Laki">Laki-Laki</option>
-                        <option value="Perempuan">Perempuan</option>
+                    <select class="form-control" name="jk" required="required" style="background-color: transparent;">
+                        <option value="Laki-Laki" style="background-color: transparent;">Laki-Laki</option>
+                        <option value="Perempuan" style="background-color: transparent;">Perempuan</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" name="nomor_hp" placeholder="Nomor Hp" required="required">
+                    <input type="number" class="form-control" name="nomor_hp" placeholder="Nomor Hp" required="required" style="background-color: transparent;">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required="required" style="background-color: transparent;">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password1" placeholder="Password" required="required">
+                    <input type="password" class="form-control" name="password1" placeholder="Password" required="required" style="background-color: transparent;">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required="required">
+                    <input type="password" class="form-control" name="password2" placeholder="Confirm Password" required="required" style="background-color: transparent;">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Sign Up</button>

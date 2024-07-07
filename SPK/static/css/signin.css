@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to left, #06173B, #000a1f);
+    color: #fff;
+    font-family: "Sora", sans-serif;
+}
+.signup-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 30px;
+    background: transparent;
+}
+.signup-form img {
+    padding: 20px 0 25px 0;
+}
+.signup-form .form-group {
+    margin-bottom: 20px;
+}
+.signup-form .form-control {
+    background: transparent;
+    color: #c0c0c0;
+    border-color: #aeaeae8e;
+    text-transform: capitalize;
+}
+.signup-form .form-control:focus {
+    border-color: #7128e5;
+    box-shadow: 1px 1px 10px #9453fd ;
+}
+.signup-form .btn {
+    background: #7128e5;
+    border: none;
+    transition: transform .2s ease;
+}
+.signup-form .btn:hover {
+    background: #e0044a;
+}
+.signup-form .btn:active {
+    background: #e0044a;
+    transform: scale(.96);
+}
+.bg1{
+    background-color: #7128e5;
+    filter: blur(100px);
+    -webkit-filter: blur(100px);
+    width: 330px;
+    height: 330px;
+    position: absolute;
+    top: 20%;
+    right: 50%;
+    border-radius: 50%;
+    box-shadow: 5px 5px 100px #e0044a;
+    animation: zoom1 5s infinite ease-in-out;
+}
+.bg2{
+    background-color: #e0044a;
+    filter: blur(100px);
+    -webkit-filter: blur(100px);
+    width: 330px;
+    height: 330px;
+    position: absolute;
+    top: 38%;
+    right: 30%;
+    border-radius: 50%;
+    box-shadow: 5px 5px 100px #5f09e1;
+    animation: zoom2 5s infinite ease-in-out;
+}
+
+@keyframes zoom1 {
+    0%, 100% {
+        transform: scale(1) translate(-10%, -40%);
+    }
+    50% {
+        transform: scale(1.1) translate(10%, 60%);
+    }
+}
+
+@keyframes zoom2 {
+    0%, 100% {
+        transform: scale(1) translate(-10%, 40%);
+    }
+    50% {
+        transform: scale(1.1) translate(20%, -60%);
+    }
+}
+
+form{
+    padding: 22px 18px;
+    /* background-color: white; */
+    /* From https://css.glass */
+    backdrop-filter: blur(12px) saturate(147%);
+    -webkit-backdrop-filter: blur(12px) saturate(147%);
+    background-color: rgba(17, 25, 40, 0.44);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    text-align: center;
+}
+form span{
+    font-size: 12px;
+    color: white;
+}

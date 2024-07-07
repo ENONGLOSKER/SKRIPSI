@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
     alamat = models.TextField()
     nim = models.CharField(max_length=20)
     prodi = models.CharField(max_length=100)
-    semester = models.CharField(max_length=10)
+    semester = models.CharField(max_length=10)  
     nomor_hp = models.CharField(max_length=13)
 
     def formatted_username(self):

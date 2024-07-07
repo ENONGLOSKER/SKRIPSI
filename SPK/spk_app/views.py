@@ -186,7 +186,9 @@ def tambah_subkriteria(request):
         form = SubKriteriaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('kriteria')  
+
+            nilai_kriteria = form.instance
+            return redirect('subkriteria', id=nilai_kriteria.kriteria.id)  
     else:
         form = SubKriteriaForm()
     
@@ -200,7 +202,8 @@ def edit_subkriteria(request, id):
         form = SubKriteriaForm(request.POST, instance=sub_kriteria)
         if form.is_valid():
             form.save()
-            return redirect('kriteria')  
+            nilai_kriteria = form.instance
+            return redirect('subkriteria', id=nilai_kriteria.kriteria.id)
     else:
         form = SubKriteriaForm(instance=sub_kriteria)
     
@@ -209,8 +212,10 @@ def edit_subkriteria(request, id):
 @login_required
 def hapus_subkriteria(request, id):
     sub_kriteria = SubKriteria.objects.get(id=id)
+    nilai_kriteria = sub_kriteria.kriteria.id
     sub_kriteria.delete()
-    return redirect('kriteria')
+    return redirect('subkriteria', id=nilai_kriteria)
+
 
 # BOBOT
 @login_required

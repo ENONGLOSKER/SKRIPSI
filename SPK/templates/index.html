@@ -201,13 +201,17 @@
 <!-- konten -->
 <div class="content">
     <img src="{% static 'img/logo_ukmitc.png' %}" alt="">
-    <h1>Sistem Pendukung Keputusan <span>Penentuan Bidang Keterampilan</span> Pada <span id="itc" data-value="UKM ITC">UKM ITC</span> <span id="bidang" data-value="Programming">Programming</span> </h1>
+    <h1>Sistem Pendukung Keputusan <span>Penentuan Bidang Keterampilan</span> Pada <span id="itc" data-value="UKM ITC">UKM ITC</span> 
+        <span id="bidang" data-value="Programming">Programming</span> 
+    </h1>
     <p>Ambil keputusan dalam memilih bidang keterampilan dengan lebih informatif sesuai bakat dan minatmu!</p>
     <div class="buttons">
         <a href="{% url 'signin'%}" class="btn-get-started">Get Started</a>
         <a href="{% url 'signin' %}" class="btn-sign-in">Sign In</a>
     </div>
 </div>
+
+
 
 <audio src="{% static 'audio/sound1.mp3' %}" autoplay></audio>
 <audio src="{% static 'audio/sound2.mp3' %}" id="sounc_click"></audio>
