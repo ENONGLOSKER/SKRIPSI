@@ -120,21 +120,76 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">ALTERNATIF UKM-ITC<h1>
                 
-                <a href="{% url 'alternatif_create' %}"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-plus fa-sm text-white-50"></i>  Add Data
-                </a>  
+                
         </div>
        
          
         <div class="row">
 
             <!-- Area tabel -->
-            <div class="col-xl-12 col-lg-9">
+            <div class="col-xl-12 col-lg-9 mb-4">
                 <div class="card shadow mb-UKM 4">
                     <!-- Card Header - Dropdown -->
                     <div class="card shadow">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 d-flex justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">DATA JADWAL</h6>
+                            <a href="{% url 'tambah_jadwal' %}"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-plus fa-sm text-white-50"></i>  Add Data
+                            </a>  
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>TANGGAL</th>                                            
+                                        <th>WAKTU</th>
+                                        <th>LINK TES</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>  
+                                                                                                                                                                                              
+                                    {%for data in data_jadwal%}                                                
+                                    <tr>
+                                        <td class="text-center">{{forloop.counter}}</td>
+                                        <td class="text-center">{{data.tanggal}}</td>
+                                        <td class="text-center">{{data.waktu}}</td>   
+                                        <td class="text-center">{{data.link_tes}}</td>
+                                        <td class="text-center">{{data.status}}</td>
+                                        <td class="text-center" >
+                                            <a href="{% url 'edit_jadwal' id=data.id %}" class="btn btn-warning btn-icon-split mb-1 ">
+                                                <span class="icon text-white-25">
+                                                    <i class="fas fa-edit"></i>
+                                                </span>                                                                
+                                            </a>
+                                          
+                                            <a href="{% url 'hapus_jadwal' id=data.id %}" class="btn btn-danger btn-icon-split mb-1" onclick="return confirm('yakin ingin menghapus data?')">
+                                                <span class="icon text-white-25">
+                                                    <i class="fas fa-trash"></i>
+                                                </span>                                                                
+                                            </a>
+                                        </td>
+                                  
+                                    </tr> 
+                                    {%endfor%}
+                                </tbody>
+                            </table>                             
+                        </div>
+                    </div>                               
+                </div>
+            </div>
+            <!-- alternatif -->
+            <div class="col-xl-12 col-lg-9 mb-4">
+                <div class="card shadow mb-UKM 4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow">
+                        <div class="card-header py-3 d-flex justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">DATA ALTERNATIF</h6>
+                            <a href="{% url 'alternatif_create' %}"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-plus fa-sm text-white-50"></i>  Add Data
+                            </a>  
                         </div>
                         <div class="card-body table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -165,6 +220,87 @@
                                                 </a>
                                               
                                                 <a href="{% url 'alternatif_delete' id=data.id %}" class="btn btn-danger btn-icon-split mb-1" onclick="return confirm('yakin ingin menghapus data?')">
+                                                    <span class="icon text-white-25">
+                                                        <i class="fas fa-trash"></i>
+                                                    </span>                                                                
+                                                </a>
+                                            </td>
+                                      
+                                        </tr> 
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                                <!-- Pagination -->
+                                <div class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        {% if datas.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ datas.previous_page_number }}">Previous</a></li>
+                                        {% else %}
+                                            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                        {% endif %}
+                                        
+                                        {% for num in datas.paginator.page_range %}
+                                            {% if datas.number == num %}
+                                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        
+                                        {% if datas.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ datas.next_page_number }}">Next</a></li>
+                                        {% else %}
+                                            <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>                                
+                        </div>
+                    </div>                               
+                </div>
+            </div>
+            <!-- user  -->
+            <div class="col-xl-12 col-lg-9">
+                <div class="card shadow mb-UKM 4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DATA ANGGOTA</h6>
+                        </div>
+                        <div class="card-body table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>NO</th>
+                                            <th>USERNAME</th>                                            
+                                            <th>JENIS KELAMIN</th>
+                                            <th>ALAMAT</th>
+                                            <th>NIM</th>
+                                            <th>PRODI</th>
+                                            <th>SEMESTER</th>
+                                            <th>NOMOR HP</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>  
+                                                                                                                                                                                                  
+                                        {%for data in data_anggota%}                                                
+                                        <tr>
+                                            <td class="text-center">{{forloop.counter}}</td>
+                                            <td >{{data.username}}</td>
+                                            <td class="text-center">{{data.jk}}</td>   
+                                            <td >{{data.alamat}}</td>
+                                            <td class="text-center">{{data.nim}}</td>
+                                            <td class="text-center">{{data.prodi}}</td>
+                                            <td class="text-center">{{data.semester}}</td>
+                                            <td class="text-center">{{data.nomor_hp}}</td>
+                                            <td class="text-center" >
+                                                <a href="{% url 'user_edit' id=data.id %}" class="btn btn-warning btn-icon-split mb-1 ">
+                                                    <span class="icon text-white-25">
+                                                        <i class="fas fa-edit"></i>
+                                                    </span>                                                                
+                                                </a>
+                                              
+                                                <a href="{% url 'user_delete' id=data.id %}" class="btn btn-danger btn-icon-split mb-1" onclick="return confirm('yakin ingin menghapus data?')">
                                                     <span class="icon text-white-25">
                                                         <i class="fas fa-trash"></i>
                                                     </span>                                                                

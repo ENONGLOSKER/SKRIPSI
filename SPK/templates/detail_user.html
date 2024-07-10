@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/itc_detail.css' %}">
-    <title>Sign Up</title>
+    <!-- Favicons -->
+    <link href="{%static 'img/logo/logo.png'%}" rel="icon">
+    <title>DETAIL USER</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,21 +87,22 @@
                 {% if nilai.hasil %}
                     <p>Rekomendasi Bidang</p>
                     {% if nilai.hasil > 4.00 %}
-                    <h3 style="position: relative;">Programming</h3>
+                    <h3 style="position: relative; background-color: #e0044a; box-shadow: 4px 4px 50px #2104e0; padding: 8px 12px; border-radius: 4px;">Programming</h3>
                     {% elif nilai.hasil < 4.00 and nilai.hasil > 3.50 %}
-                    <h3 style="position: relative;">Jaringan</h3>
+                    <h3 style="position: relative; background-color: #e0044a; box-shadow: 4px 4px 50px #2104e0; padding: 8px 12px; border-radius: 4px;">Jaringan</h3>
                     {% elif nilai.hasil < 3.50 and nilai.hasil > 3.00 %}
-                    <h3 style="position: relative;">IOT</h3>
+                    <h3 style="position: relative; background-color: #e0044a; box-shadow: 4px 4px 50px #2104e0; padding: 8px 12px; border-radius: 4px;">IOT</h3>
                     {% else %}
-                    <h3 style="position: relative;">Multimedia</h3>
+                    <h3 style="position: relative; background-color: #e0044a; box-shadow: 4px 4px 50px #2104e0; padding: 8px 12px; border-radius: 4px;">Multimedia</h3>
                     {% endif %}
                 {% else %}
                     <p>Jadwal Tes</p>
-                    {%for data in jadwal %}
-                    <h3 style="position: relative;">{{ data.tanggal }} / <span style="background-color: #e0044a;color: #fff; padding: 4px; border-radius: 2px;">{{ data.waktu }}</span></h3>
-                    
-                    <a href="{{ data.link_tes }}" target="_blank">Mulai Tes</a>
-                    {%endfor%}
+                    {% if data_jadwal %}
+                        <h3 style="position: relative;">{{ data_jadwal.tanggal }} / <span style="background-color: #e0044a;color: #fff; padding: 4px; border-radius: 2px;">{{ data_jadwal.waktu }}</span></h3>
+                        <a href="{{ data_jadwal.link_tes }}" target="_blank" style="text-decoration: none; font-weight: bold;">Mulai Tes</a>
+                    {% else %}
+                        <p>Tidak ada data jadwal tersedia.</p>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

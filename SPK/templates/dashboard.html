@@ -143,8 +143,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Anggota & Alternatif</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="#" class="text-gray-800">Jumlah {{jumlah_user}} / {{jumlah_alternatif}} </a></div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">ALTERNATIF</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="#" class="text-gray-800">Jumlah {{jumlah_alternatif}} Orang</a></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -159,8 +159,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Kriteria & Subkriteria</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="#" class="text-gray-800">Jumlah {{jumlah_kriteria}} / {{jumlah_subkriteria}} </a></div>
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">REKOMENDASI BID. PROGRAMMING</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="#" class="text-gray-800">Jumlah {{jlh_rek_programming}} Orang</a></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -175,8 +175,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Bobot</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="" class="text-gray-800">Jumlah {{jumlah_bobot}} </a></div>
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">REKOMENDASI BID. JARINGAN</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="" class="text-gray-800">Jumlah {{jlh_rek_jaringan}} Orang</a></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -191,19 +191,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Penilaian
-                                </div>
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="persentase_penilaian">{{persentase_penilaian}} %</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-info" role="progressbar"
-                                                style="width: {{persentase_penilaian}}%" id="progress_bar"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">REKOMENDASI BID. MULTIMEDIA</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="" class="text-gray-800">Jumlah {{jlh_rek_multimedia}} Orang</a></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -212,8 +201,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <!-- {% for data_bidang in data_pengurus_per_bidang %}
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -309,7 +296,7 @@
                 text: 'Visualisasi Data'
             },
             xAxis: {
-                categories: ['User', 'Alternatif', 'Kriteria', 'Subkriteria', 'Bobot', 'Persentase Penilaian']
+                categories: ['User', 'Alternatif', 'Kriteria', 'Subkriteria', 'Bobot']
             },
             yAxis: {
                 title: {
@@ -318,7 +305,7 @@
             },
             series: [{
                 name: 'Jumlah',
-                data: [{{ jumlah_user }}, {{ jumlah_alternatif }}, {{ jumlah_kriteria }}, {{ jumlah_subkriteria }}, {{ jumlah_bobot }}, {{ persentase_penilaian }}]
+                data: [{{ jumlah_user }}, {{ jumlah_alternatif }}, {{ jumlah_kriteria }}, {{ jumlah_subkriteria }}, {{ jumlah_bobot }}]
             }]
         });
     });

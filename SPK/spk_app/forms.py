@@ -26,6 +26,35 @@ class CustomUserCreationForm(forms.ModelForm):
 # Perbaikan pada form AlternatifForm berdasarkan model Alternatif
 
 
+class JadwalForm(forms.ModelForm):
+    class Meta:
+        model = Jadwal
+        fields = ['tanggal', 'waktu','link_tes','status']
+
+        widgets = {
+            'tanggal': forms.DateInput(attrs={'class': 'form-control','type':'date'}),
+            'waktu': forms.TimeInput(attrs={'class': 'form-control','type':'time'}),
+            'link_tes': forms.TextInput(attrs={'class': 'form-control'}),
+            'status': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'jk', 'alamat', 'nim','prodi','semester','nomor_hp']
+
+
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'type':'email'}),
+            'jk': forms.Select(choices=[('Laki-laki', 'Laki-laki'), ('Perempuan', 'Perempuan')], attrs={'class': 'form-control'}),
+            'alamat': forms.Textarea(attrs={'class': 'form-control'}),
+            'nim': forms.NumberInput(attrs={'class': 'form-control','type':'number'}),
+            'prodi': forms.Select(choices=[('Teknik Informatika', 'Teknik Informatika'), ('Sistem Informasi', 'Sistem Informasi')], attrs={'class': 'form-control'}),
+            'semester': forms.TextInput(attrs={'class': 'form-control'}),
+            'nomor_hp': forms.NumberInput(attrs={'class': 'form-control','type':'number'}),
+        }
+        
 class AlternatifForm(forms.ModelForm):
     class Meta:
         model = Alternatif
@@ -70,7 +99,6 @@ class BobotForm(forms.ModelForm):
             'nilai': forms.TextInput(attrs={'class': 'form-control'}),
             'keterangan': forms.TextInput(attrs={'class': 'form-control'}),
         }
-
 
 class PenilaianForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

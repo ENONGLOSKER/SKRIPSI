@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rounded Rectangle</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2e3b4e;
+}
+
+.rounded-rectangle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    height: 200px;
+    background-color: #f8bfbf;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+.rounded-rectangle::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background-color: #2e3b4e;
+    border-radius: 50%;
+}
+
+.content {
+    max-width: 80%;
+}
+
+.content h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #000;
+}
+
+.content p {
+    font-size: 16px;
+    color: #000;
+    margin: 10px 0;
+}
+
+.icon {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    </style>
+</head>
+<body>
+    <div class="rounded-rectangle">
+        <div class="content">
+            <h2>Global partners</h2>
+            <p>Agency that builds many amazing products to boost your business to the next level.</p>
+            <p>We are officially partnered with the world's best brands. Subscribe to our newsletter.</p>
+        </div>
+        <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M12 2l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5L7 5.5l3.5-.5L12 2z" fill="#000"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>

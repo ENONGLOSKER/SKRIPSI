@@ -26,6 +26,11 @@ urlpatterns = [
     # admin
     path('admin/', admin.site.urls),
     path('dashboard/', views.dashboard_admin, name='dashboard'),
+    # jadwal
+    path('dashboard/jadwal/', views.dashboard_jadwal, name='dashboard_jadwal'),
+    path('dashboard/jadwal/create/', views.tambah_jadwal, name='tambah_jadwal'),
+    path('dashboard/jadwal/update/<int:id>/', views.edit_jadwal, name='edit_jadwal'),
+    path('dashboard/jadwal/delete/<int:id>/', views.hapus_jadwal, name='hapus_jadwal'),
     # kriteria
     path('dashboard/kriteria/', views.dashboard_kriteria, name='kriteria'),
     path('dashboard/kriteria/create/', views.tambah_kriteria, name='kriteria_create'),
@@ -42,6 +47,8 @@ urlpatterns = [
     path('dashboard/alternatif/create/', views.tambah_alternatif, name='alternatif_create'),
     path('dashboard/alternatif/update/<int:id>/', views.edit_alternatif, name='alternatif_edit'),
     path('dashboard/alternatif/delete/<int:id>/', views.hapus_alternatif, name='alternatif_delete'),
+    path('dashboard/user/update/<int:id>/', views.edit_user, name='user_edit'),
+    path('dashboard/user/delete/<int:id>/', views.hapus_user, name='user_delete'),
     
     # bobot
     path('dashboard/bobot', views.dashboard_bobot, name='bobot'),

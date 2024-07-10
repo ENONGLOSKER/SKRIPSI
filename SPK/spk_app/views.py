@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 
 from .models import CustomUser, Jadwal, Alternatif, Kriteria, SubKriteria, Bobot, Penilaian, PenilaianGap, PenilaianRangking, PenilaianHasil
-from .forms import CustomUserCreationForm, AlternatifForm, KriteriaForm, SubKriteriaForm, BobotForm, PenilaianForm
+from .forms import CustomUserCreationForm, AlternatifForm, KriteriaForm, SubKriteriaForm, BobotForm, PenilaianForm, JadwalForm, UserForm
 
 
 # Create your views here.
@@ -27,9 +27,14 @@ def detail_user(request):
     except ObjectDoesNotExist:
         nilai = None
 
+    if jadwal.exists():
+        data_jadwal = jadwal.filter(status=True).last() 
+    else:
+        data_jadwal = None
+
     context = {
         'user': user, 
-        'jadwal': jadwal,
+        'data_jadwal': data_jadwal,
         'nilai': nilai
     }
     return render(request, 'detail_user.html', context)
@@ -41,9 +46,11 @@ def dashboard_admin(request):
     jumlah_kriteria = Kriteria.objects.count()
     jumlah_subkriteria = SubKriteria.objects.count()
     jumlah_bobot = Bobot.objects.count()
-    persentase_penilaian = (jumlah_user / jumlah_alternatif)
-
     penilaianhasil_list = PenilaianHasil.objects.all().order_by('alternatif__simbol')
+
+    rek_programming = PenilaianHasil.objects.filter(hasil__gte=4).count()
+    rek_jaringan = PenilaianHasil.objects.filter(hasil__gte=3, hasil__lt=4).count()
+    rek_multimedia = PenilaianHasil.objects.filter(hasil__lt=3).count()
 
     context = {
         'jumlah_user': jumlah_user,
@@ -51,20 +58,85 @@ def dashboard_admin(request):
         'jumlah_kriteria': jumlah_kriteria,
         'jumlah_subkriteria': jumlah_subkriteria,
         'jumlah_bobot': jumlah_bobot,
-        'persentase_penilaian': persentase_penilaian,
+
+        'jlh_rek_programming':rek_programming,
+        'jlh_rek_jaringan':rek_jaringan,
+        'jlh_rek_multimedia':rek_multimedia,
+
         'penilaianhasil_list': penilaianhasil_list,
+
         'alternatif_list': Alternatif.objects.all() 
     }
 
     return render(request, 'dashboard.html', context)
 
+# JADWAL
+@login_required
+def dashboard_jadwal(request):
+    # Mengambil data Alternatif dengan menghubungkan ke CustomUser
+    data_jadwal= Jadwal.objects.all()
+
+    # Pencarian
+    cari = request.GET.get('cari')
+    if cari:
+        data_jadwal = data_jadwal.filter(nama__username__icontains=cari)
+
+    # Pagination
+    paginator = Paginator(data_jadwal, 5)  # Tampilkan 5 item per halaman
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'datas': page_obj,
+        'cari': cari,
+    }
+    return render(request, 'dashboard_jadwal.html', context)
+
+@login_required
+def tambah_jadwal(request):
+    if request.method == "POST":
+        form = JadwalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard_jadwal')
+    else:
+        form = JadwalForm()
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'dashboard_form.html', context)
+
+@login_required
+def edit_jadwal(request, id):
+    jadwal = get_object_or_404(Jadwal, id=id)
+    if request.method == "POST":
+        form = JadwalForm(request.POST, instance=jadwal)
+        if form.is_valid():
+            form.save()
+            return redirect('alternatif')
+    else:
+        form = JadwalForm(instance=jadwal)
+    
+    context = {
+        'form': form,
+        'jadwal': jadwal,
+    }
+    return render(request, 'dashboard_form.html', context)
+
+@login_required
+def hapus_jadwal(request, id):
+    jadwal = get_object_or_404(Jadwal, id=id)
+    jadwal.delete()
+    return redirect('alternatif')
 
 # ALTERNATIF
 @login_required
 def dashboard_alternatif(request):
     # Mengambil data Alternatif dengan menghubungkan ke CustomUser
+    data_anggota = CustomUser.objects.all().order_by('-id')
     data_alternatif = Alternatif.objects.all().select_related('nama')
-
+    data_jadwal= Jadwal.objects.all()
     # Pencarian
     cari = request.GET.get('cari')
     if cari:
@@ -78,6 +150,8 @@ def dashboard_alternatif(request):
     context = {
         'datas': page_obj,
         'cari': cari,
+        'data_anggota': data_anggota,
+        'data_jadwal': data_jadwal,
     }
     return render(request, 'dashboard_alternatif.html', context)
 @login_required
@@ -109,6 +183,27 @@ def edit_alternatif(request, id):
 @login_required
 def hapus_alternatif(request, id):
     alternatif = Alternatif.objects.get(id=id)
+    alternatif.delete()
+    return redirect('alternatif')
+
+
+@login_required
+def edit_user(request, id):
+    data_user = CustomUser.objects.get(id=id)
+    
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=data_user)
+        if form.is_valid():
+            form.save()
+            return redirect('alternatif')  
+    else:
+        form = UserForm(instance=data_user)
+    
+    context = {'form': form}
+    return render(request, 'dashboard_form.html', context)
+@login_required
+def hapus_user(request, id):
+    alternatif = CustomUser.objects.get(id=id)
     alternatif.delete()
     return redirect('alternatif')
 

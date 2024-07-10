@@ -1,6 +1,5 @@
 {%extends 'base.html'%}
 {%load static%}
-
 {%block konten%}
 <div id="content">
 
@@ -15,7 +14,7 @@
         <!-- Topbar Search -->
         <form action="" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-                <input type="text" name="cari" class="form-control bg-light border-0 small" placeholder="Search for..." value="" aria-label="Search" aria-describedby="basic-addon2">
+                <input type="text" name="cari" class="form-control bg-light border-0 small" placeholder="Search for..." value="{{ cari }}" aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
@@ -119,9 +118,9 @@
 
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">PENILAIAN UKM-ITC<h1>
+            <h1 class="h3 mb-0 text-gray-800">JADWAL UKM-ITC<h1>
                 
-                <a href="{% url 'penilaian_create' %}"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                <a href="{% url 'tambah_jadwal' %}"  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-plus fa-sm text-white-50"></i>  Add Data
                 </a>  
         </div>
@@ -130,64 +129,80 @@
         <div class="row">
 
             <!-- Area tabel -->
-            {% if penilaian_hasil %}
             <div class="col-xl-12 col-lg-9">
                 <div class="card shadow mb-UKM 4">
                     <!-- Card Header - Dropdown -->
                     <div class="card shadow">
-                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">DATA PERENGKINGAN</h6>
-                            
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DATA JADWAL</h6>
                         </div>
                         <div class="card-body table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>ALTERNATIF</th>                                            
-                                        <th>NCF (60%)</th>
-                                        <th>NSF (40%)</th>
-                                        <th>NILAI</th>
-                                        <th class="text-primary">REKOMENDASI</th>
-                                    </tr>
-                                </thead>
-                                <tbody>  
-                                    {% for data in penilaian_hasil %}                       
-                                    <tr>
-                                        <td class="text-center">{{ forloop.counter }}</td>
-                                        <td class="text-center" style="text-transform: uppercase;">{{ data.alternatif.nama }}</td>  
-                                        <td class="text-center">{{ data.ncf }}</td>   
-                                        <td class="text-center">{{ data.nsf }}</td>    
-                                        <td class="text-center">{{ data.hasil }}</td>  
-                                        <td class="text-center">
-                                            {% if data.hasil > 4.00 %}
-                                            <span class="badge bg-primary text-white py-2 px-4">Programming</span>
-                                            {% elif data.hasil < 4.00 and data.hasil > 3.50 %}
-                                            <span class="badge bg-warning  text-white py-2 px-4">Jaringan</span>
-                                            {% elif data.hasil < 3.50 and data.hasil > 3.00 %}
-                                            <span class="badge bg-success text-white py-2 px-4">IOT</span>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>NO</th>
+                                            <th>TANGGAL</th>                                            
+                                            <th>WAKTU</th>
+                                            <th>LINK TES</th>
+                                            <th>STATUS</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>  
+                                                                                                                                                                                                  
+                                        {%for data in datas%}                                                
+                                        <tr>
+                                            <td class="text-center">{{forloop.counter}}</td>
+                                            <td class="text-center">{{data.tanggal}}</td>
+                                            <td class="text-center">{{data.waktu}}</td>   
+                                            <td class="text-center">{{data.link_tes}}</td>
+                                            <td class="text-center">{{data.status}}</td>
+                                            <td class="text-center" >
+                                                <a href="{% url 'edit_jadwal' id=data.id %}" class="btn btn-warning btn-icon-split mb-1 ">
+                                                    <span class="icon text-white-25">
+                                                        <i class="fas fa-edit"></i>
+                                                    </span>                                                                
+                                                </a>
+                                              
+                                                <a href="{% url 'hapus_jadwal' id=data.id %}" class="btn btn-danger btn-icon-split mb-1" onclick="return confirm('yakin ingin menghapus data?')">
+                                                    <span class="icon text-white-25">
+                                                        <i class="fas fa-trash"></i>
+                                                    </span>                                                                
+                                                </a>
+                                            </td>
+                                      
+                                        </tr> 
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                                <!-- Pagination -->
+                                <div class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        {% if datas.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ datas.previous_page_number }}">Previous</a></li>
+                                        {% else %}
+                                            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                        {% endif %}
+                                        
+                                        {% for num in datas.paginator.page_range %}
+                                            {% if datas.number == num %}
+                                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
                                             {% else %}
-                                            <span class="badge bg-danger text-white py-2 px-4">Multimedia</span>
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
                                             {% endif %}
-                                        </td>     
-                                    </tr> 
-                                    {% endfor %}
-                                </tbody>
-                            </table>                 
+                                        {% endfor %}
+                                        
+                                        {% if datas.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ datas.next_page_number }}">Next</a></li>
+                                        {% else %}
+                                            <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>                                
                         </div>
                     </div>                               
                 </div>
             </div>
-            {% else %}
-            <div class="col-xl-12 col-lg-9">
-                <div class="card shadow mb-UKM 4">
-                    <h4 class="text-center p-5">Belum dilakukan Penilaian!</h4>                         
-                </div>
-            </div>
-            {% endif %}
-            
-
-            
         </div>
 
     </div>
